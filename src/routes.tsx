@@ -3,6 +3,9 @@ import MainLayout from "./layouts/MainLayout";
 import Home from "./features/Home";
 import ReadingMainPage from "./features/reading/ReadingMainPage";
 import ReadingPage from "./features/reading/pages/ReadingPage";
+import GrammarMainPage from "./features/grammar/pages/GrammarMainPage";
+import GrammarExercisePage from "./features/grammar/pages/GrammarExercisePage";
+import ListeningMainPage from "./features/listening/ListeningMainPage";
 
 const router = createBrowserRouter([
   {
@@ -12,7 +15,11 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       {
         path: "grammar",
-        element: <ReadingMainPage />,
+        element: <GrammarMainPage />,
+      },
+      {
+        path: "grammar/:id",
+        element: <GrammarExercisePage />,
       },
       {
         path: "reading",
@@ -24,7 +31,7 @@ const router = createBrowserRouter([
       },
       {
         path: "listening",
-        element: <ReadingMainPage />,
+        element: <ListeningMainPage />,
       },
     ],
   },

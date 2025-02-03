@@ -7,11 +7,12 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import React, { FC, ReactNode } from "react";
+import { FC, ReactNode } from "react";
 import { Link, Outlet } from "react-router";
 import { useThemeContext } from "../context/ThemeContextProvider";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Logo from "../shared/Logo";
 
 const MainLayout = () => {
   const { darkMode, toggleTheme } = useThemeContext();
@@ -20,25 +21,32 @@ const MainLayout = () => {
     <>
       <AppBar elevation={0}>
         <Toolbar>
-          <Typography variant="h6" sx={{ mr: 5 }}>
-            Bufallo talks
-          </Typography>
-          <Button
-            color="inherit"
-            component={Link}
-            to="/"
-            sx={{ textTransform: "none" }}
+          <Box
+            sx={{
+              mr: 2,
+              zIndex: 1,
+              display: "flex",
+              position: "relative",
+              gap: 1,
+              color: (theme) => theme.palette.text.primary,
+            }}
           >
-            Home
-          </Button>
-          <Button
-            color="inherit"
-            component={Link}
-            to="/games"
-            sx={{ textTransform: "none" }}
-          >
-            Games
-          </Button>
+            <Logo width={24} height={24} />
+            <Typography variant="h6" fontWeight="bold">
+              Buffalo Talks
+            </Typography>
+          </Box>
+          <Box sx={{ flexGrow: 1 }}>
+            <Button
+              color="inherit"
+              component={Link}
+              to="/"
+              sx={{ textTransform: "none" }}
+            >
+              Home
+            </Button>
+          </Box>
+
           <Box
             component={IconButton}
             color="textIcon"

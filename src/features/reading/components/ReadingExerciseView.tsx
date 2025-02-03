@@ -1,17 +1,5 @@
-import React, { useState } from "react";
-import {
-  Box,
-  Button,
-  TextField,
-  Typography,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-  Card,
-  CardContent,
-  Stack,
-  Grid2,
-} from "@mui/material";
+import React from "react";
+import { Card, CardContent, Grid2 } from "@mui/material";
 import { ComprehensionExercise } from "../../../models/exercise";
 import ReadingPassage from "./ReadingPassage";
 import ReadingQuiz from "./ReadingQuiz";

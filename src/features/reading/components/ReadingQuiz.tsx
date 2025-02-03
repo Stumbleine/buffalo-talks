@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import {
   ComprehensionExercise,
   QuestionStatusType,
@@ -9,7 +9,6 @@ import {
   Dialog,
   Divider,
   FormControlLabel,
-  Modal,
   Radio,
   RadioGroup,
   Stack,
@@ -23,40 +22,26 @@ import { red } from "@mui/material/colors";
 import QuizSummary from "./QuizSummary";
 
 const ReadingQuiz: FC<{ exercise: ComprehensionExercise }> = ({ exercise }) => {
-  // Estado para la copia del ejercicio
   const [exerciseCopy, setExerciseCopy] = useState(exercise);
-
-  // Estado para el índice de la pregunta actual
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-
-  // Estado para el progreso de las preguntas
   const [progress, setProgress] = useState<QuestionStatusType[]>(
     exercise.questions.map(() => "Not Answered")
   );
-
   const [quizFinished, setQuizFinished] = useState(false);
-
-  // Estado para las respuestas del usuario
   const [userAnswers, setUserAnswers] = useState<{ [key: number]: string }>({});
-
-  // Obtener la pregunta actual basada en el índice
   const currentQuestion = exerciseCopy.questions[currentQuestionIndex];
 
-  // Manejar cambios en las respuestas del usuario
   const handleInputChange = (questionId: number, value: string) => {
     setUserAnswers((prev) => ({ ...prev, [questionId]: value }));
   };
 
-  // Función para actualizar el estado de una pregunta
   const updateQuestionStatus = (index: number, status: QuestionStatusType) => {
-    // Actualizar el estado en progress
     setProgress((prev) => {
       const newProgress = [...prev];
       newProgress[index] = status;
       return newProgress;
     });
 
-    // Actualizar el estado en exerciseCopy
     setExerciseCopy((prev) => {
       const newQuestions = [...prev.questions];
       newQuestions[index] = { ...newQuestions[index], status };
@@ -64,12 +49,10 @@ const ReadingQuiz: FC<{ exercise: ComprehensionExercise }> = ({ exercise }) => {
     });
   };
 
-  // Manejar la respuesta del usuario
   const handleSubmit = () => {
     const answer = userAnswers[currentQuestion.id];
     const isCorrect = answer === currentQuestion.answer;
 
-    // Actualizar el estado de la pregunta actual
     const newStatus = isCorrect ? "Correct" : "Failed";
     updateQuestionStatus(currentQuestionIndex, newStatus);
     if (
@@ -80,7 +63,6 @@ const ReadingQuiz: FC<{ exercise: ComprehensionExercise }> = ({ exercise }) => {
     }
   };
 
-  // Manejar la navegación a la siguiente pregunta
   const handleNextQuestion = () => {
     if (currentQuestionIndex < exercise.questions.length - 1) {
       setCurrentQuestionIndex((prev) => prev + 1);
@@ -209,8 +191,9 @@ const ReadingQuiz: FC<{ exercise: ComprehensionExercise }> = ({ exercise }) => {
 };
 
 export default ReadingQuiz;
+
 interface ProgressProps {
-  progress: QuestionStatusType[]; // Estado de las preguntas
+  progress: QuestionStatusType[];
 }
 
 const Progress = ({ progress }: ProgressProps) => {
@@ -223,7 +206,7 @@ const Progress = ({ progress }: ProgressProps) => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        gap: 1, // Espacio entre elementos
+        gap: 1,
       }}
     >
       <Typography variant="body2">Progress</Typography>
@@ -231,7 +214,7 @@ const Progress = ({ progress }: ProgressProps) => {
         sx={{
           display: "flex",
           flexWrap: "wrap",
-          gap: 1, // Espacio entre íconos
+          gap: 1,
         }}
       >
         {progress.map((status, index) => (

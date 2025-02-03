@@ -87,5 +87,14 @@ export const darkTheme = createTheme({
         },
       },
     },
+    MuiInputBase: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          borderRadius: "8px",
+          paddingLeft: "5px",
+          border: `1.5px solid ${theme.palette.secondary.light}`,
+        }),
+      },
+    },
   },
 });

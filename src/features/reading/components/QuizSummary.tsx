@@ -7,7 +7,6 @@ interface QuizSummaryProps {
 }
 
 const QuizSummary: React.FC<QuizSummaryProps> = ({ questionStatuses }) => {
-  // Calcular métricas
   const totalQuestions = questionStatuses.length;
   const correctAnswers = questionStatuses.filter(
     (status) => status === "Correct"
@@ -20,7 +19,6 @@ const QuizSummary: React.FC<QuizSummaryProps> = ({ questionStatuses }) => {
   ).length;
   const score = Math.round((correctAnswers / totalQuestions) * 100);
 
-  // Mensaje personalizado basado en el puntaje
   let message = "";
   if (score >= 90) {
     message = "¡Excelente trabajo! 🎉";
@@ -34,17 +32,14 @@ const QuizSummary: React.FC<QuizSummaryProps> = ({ questionStatuses }) => {
 
   return (
     <Box sx={{ textAlign: "center", p: 3 }}>
-      {/* Título */}
       <Typography variant="h4" component="h2" gutterBottom>
         Resumen del Quiz
       </Typography>
 
-      {/* Puntaje */}
       <Typography variant="h6" component="p" gutterBottom>
         Tu puntaje: <strong>{score}%</strong>
       </Typography>
 
-      {/* Detalles */}
       <Box sx={{ mt: 2 }}>
         <Typography variant="body1" component="p">
           Preguntas correctas: <strong>{correctAnswers}</strong>
@@ -57,14 +52,12 @@ const QuizSummary: React.FC<QuizSummaryProps> = ({ questionStatuses }) => {
         </Typography>
       </Box>
 
-      {/* Mensaje personalizado */}
       {score > 50 && (
         <Typography variant="body1" sx={{ mt: 2, color: "success.main" }}>
           {message}
         </Typography>
       )}
 
-      {/* Recomendación */}
       <Typography variant="body2" sx={{ mt: 2, fontStyle: "italic" }}>
         Revisa las preguntas fallidas para mejorar tu puntaje.
       </Typography>

@@ -21,13 +21,13 @@ export const ThemeContextProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [darkMode, setDarkMode] = useState<boolean>(() => {
     const storedTheme = localStorage.getItem("darkMode");
-    return storedTheme ? JSON.parse(storedTheme) : true; // Default a `false` si no hay valor guardado
+    return storedTheme ? JSON.parse(storedTheme) : true;
   });
 
   const toggleTheme = () => {
     setDarkMode((prev) => {
       const newMode = !prev;
-      localStorage.setItem("darkMode", JSON.stringify(newMode)); // Guarda el nuevo estado en localStorage
+      localStorage.setItem("darkMode", JSON.stringify(newMode));
       return newMode;
     });
   };

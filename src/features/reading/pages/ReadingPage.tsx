@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { comprehensionExercises } from "../../../utils/mocks";
+import { comprehensionExercises } from "../../../utils/ReadingMock";
 import { Typography } from "@mui/material";
 import ReadingExerciseView from "../components/ReadingExerciseView";
 
